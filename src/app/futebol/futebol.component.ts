@@ -36,7 +36,7 @@ export class FutebolComponent implements OnInit {
         });
       },
       error => {
-        console.error("Erro ao buscar os campeonatos de futebol:", error);
+        console.error("Erro ao buscar os campeonatos de baseball:", error);
       }
     );   
   }
