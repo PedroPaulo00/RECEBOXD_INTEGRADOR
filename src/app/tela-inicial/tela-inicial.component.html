@@ -1,0 +1,24 @@
+<div class="container">
+    <!-- Logo do site -->
+    <div class="logo">
+        <img src="assets/logo.png" alt="Logo do site" />
+    </div>
+
+    <!-- Formulário de login -->
+    <form class="login-form">
+        <div class="input-group">
+            <label for="login">Login</label>
+            <input type="text" id="login" name="login">
+        </div>
+        <div class="input-group">
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" name="senha">
+        </div>
+        <button type="submit">Entrar</button>
+    </form>
+
+     <!-- Link para a tela de cadastro -->
+  <div class="register-link">
+    <a [routerLink]="['/cadastro']">Cadastre-se</a>
+  </div>
+</div>

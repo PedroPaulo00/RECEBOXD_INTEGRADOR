@@ -1,0 +1,15 @@
+<div class="center">
+  <h2>Painel de Administração</h2>
+  <form #championshipForm="ngForm" (ngSubmit)="createChampionship(championshipForm.value)">
+    <input type="text" placeholder="Nome do Campeonato" name="name" ngModel />
+    
+    <select name="sport" ngModel>
+      <option value="futebol">Futebol</option>
+      <option value="basquete">Basquete</option>
+      <option value="tenis">Tênis</option>
+      <option value="baseball">Baseball</option>
+    </select>
+
+    <button type="submit">Cadastrar Campeonato</button>
+  </form>
+</div>

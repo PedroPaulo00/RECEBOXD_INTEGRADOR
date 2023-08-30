@@ -1,0 +1,51 @@
+body {
+    background-color: #363636;
+    color: #DCDCDC;
+    font-family: Arial, sans-serif;  /* Esta é uma sugestão de fonte. Você pode escolher a que preferir */
+    margin: 0;
+    padding: 0;
+}
+
+input, textarea, select {
+    background-color: #696969;
+    color: #DCDCDC;  /* Definindo a cor da fonte para coincidir com a cor geral de texto do app */
+    border: 1px solid #DCDCDC; /* Uma borda clara para os campos se destacarem no fundo escuro */
+    padding: 8px;
+    margin: 4px 0;  /* Espaçamento básico acima e abaixo do campo */
+    border-radius: 4px;  /* Bordas arredondadas */
+}
+
+/* Estilo para o placeholder */
+input::placeholder, textarea::placeholder {
+    color: #A9A9A9; /* Uma cor um pouco mais clara que o fundo, mas ainda visível */
+}
+
+/* Estilo para o foco do campo */
+input:focus, textarea:focus, select:focus {
+    outline: none;  /* Remove o contorno padrão */
+    border-color: #8dc8db; /* Uma borda de foco azul, você pode ajustar conforme a estética do seu app */
+}
+
+/* Estilos para os botões */
+button, input[type="button"], input[type="submit"] {
+    background-color: #000000;
+    color: #DCDCDC;  /* Definindo a cor da fonte para coincidir com a cor geral de texto do app */
+    border: 1px solid #DCDCDC; /* Uma borda clara para os botões se destacarem no fundo escuro */
+    padding: 8px 12px;  /* Espaçamento interno para o botão */
+    margin: 4px 0;  /* Espaçamento básico acima e abaixo do botão */
+    border-radius: 4px;  /* Bordas arredondadas */
+    cursor: pointer;  /* O cursor se transforma em uma mão quando passa sobre o botão */
+    transition: background-color 0.3s, color 0.3s; /* Transição suave para mudanças de cor */
+}
+
+/* Estilo para o botão quando o mouse passa por cima */
+button:hover, input[type="button"]:hover, input[type="submit"]:hover {
+    background-color: #1C1C1C;  /* Uma cor um pouco mais clara que o fundo original do botão para o efeito hover */
+    color: #00BFFF;  /* Cor da fonte no hover */
+}
+
+/* Estilo para o foco e ativo do botão */
+button:focus, button:active, input[type="button"]:focus, input[type="submit"]:focus, input[type="button"]:active, input[type="submit"]:active {
+    outline: none;  /* Remove o contorno padrão */
+    border-color: #00BFFF; /* Uma borda de foco/ativo azul */
+}
