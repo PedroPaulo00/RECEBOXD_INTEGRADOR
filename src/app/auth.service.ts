@@ -11,47 +11,62 @@ export class AuthService {
 
   async signUp(email: string, password: string) {
     try {
+      if (!email.split('@')[0].match(/^[A-Za-z0-9_.]+$/) || 
+          !password.match(/^[A-Za-z0-9_.@]+$/)) {
+        throw new Error("Invalid input");
+      }
+      
+      console.log(`Registrando usuário com e-mail: ${email}`);
       await this.afAuth.createUserWithEmailAndPassword(email, password);
-      this.router.navigate(['/']); // Navegar para a página inicial após o cadastro bem-sucedido
-    } catch (error) {
-      console.error("Erro no cadastro:", error);
-      // Aqui você pode tratar o erro de maneira mais amigável ao usuário
+      console.log("Usuário registrado com sucesso!");
+      this.router.navigate(['/']);
+    } catch (error: any) {
+      console.error("Erro durante signUp:", error);
+      this.handleError(error);
     }
   }
+  
+  
+  
+  
 
   async signIn(email: string, password: string) {
     try {
+      console.log("Chamando signInWithEmailAndPassword com", email, password);
       await this.afAuth.signInWithEmailAndPassword(email, password);
-      this.router.navigate(['/']); // Navegar para a página inicial após o login bem-sucedido
-    } catch (error) {
-      console.error("Erro no login:", error);
-      // Aqui você pode tratar o erro de maneira mais amigável ao usuário
+      console.log("Autenticado com sucesso. Redirecionando...");
+      this.router.navigate(['/esportes']);
+    } catch (error: any) {
+      console.error("Erro durante signInWithEmailAndPassword:", error);
+      this.handleError(error);
     }
-  }
+  }  
 
   async signOut() {
     try {
       await this.afAuth.signOut();
       this.router.navigate(['/login']); // Navegar para a página de login após o logout
-    } catch (error) {
+    } catch (error: any) {
       console.error("Erro no logout:", error);
     }
   }
 
-  catch (error: { code: string }) {
+  private handleError(error: any) {
     let errorMessage: string;
-
     const errorMessages: { [key: string]: string } = {
-        'auth/email-already-in-use': "Este email já está em uso.",
-        'auth/invalid-email': "Email inválido.",
-        // ... adicione outros códigos de erro conforme necessário
+      'auth/email-already-in-use': "Este email já está em uso.",
+      'auth/invalid-email': "Email inválido.",
+      // ... adicione outros códigos de erro conforme necessário
     };
 
-    errorMessage = errorMessages[error.code] || "Ocorreu um erro desconhecido.";
+    if ('code' in error) {
+      errorMessage = errorMessages[error.code] || "Ocorreu um erro desconhecido.";
+    } else {
+      errorMessage = "Erro desconhecido: " + JSON.stringify(error);
+    }
 
     // Mostre a mensagem de erro para o usuário
-    console.error(errorMessage); // Você pode mostrar a mensagem de erro para o usuário como quiser.
-}
-
+    console.error(errorMessage);
+  }
   
 }

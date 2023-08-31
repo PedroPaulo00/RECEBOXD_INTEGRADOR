@@ -28,8 +28,6 @@ export class FirestoreDataService {
     return this.firestore.collection('championships').snapshotChanges();
   }
   
-
-
   createChampionshipInSport(sport: string, data: any): Promise<void> {
     // Gere um ID aleatório e adicione o documento usando esse ID.
     const randomId = this.generateRandomId();

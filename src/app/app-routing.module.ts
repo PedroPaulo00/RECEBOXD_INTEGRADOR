@@ -1,3 +1,4 @@
+import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { TelaInicialComponent } from './tela-inicial/tela-inicial.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
@@ -8,9 +9,8 @@ import { TenisComponent } from './tenis/tenis.component';
 import { BaseballComponent } from './baseball/baseball.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 // import { AppComponent } from './app.component';
-import { DetalhesCampeonatoBaseballComponent } from './detalhes-campeonato-baseball/detalhes-campeonato-baseball.component';
-import { RouterModule, Routes } from '@angular/router';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { DetalhesCampeonatoBaseballComponent } from './detalhes-campeonato-baseball/detalhes-campeonato-baseball.component';
 
 const routes: Routes = [
   { path: '', component: TelaInicialComponent },

@@ -9,7 +9,7 @@ import { AuthService } from '../auth.service';
 export class TelaInicialComponent implements OnInit {
 
   // Adicionando a propriedade userData
-  public userData: any = {
+  userData = {
     email: '',
     password: ''
   };
@@ -21,8 +21,10 @@ export class TelaInicialComponent implements OnInit {
   }
 
   onSignIn() {
+    console.log("Tentativa de login com", this.userData.email);
     this.authService.signIn(this.userData.email, this.userData.password);
   }
+  
 
   // Adicione aqui quaisquer métodos ou lógicas adicionais que você precisará
 }

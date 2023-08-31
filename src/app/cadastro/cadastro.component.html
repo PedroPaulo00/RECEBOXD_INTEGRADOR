@@ -1,5 +1,8 @@
 <h2>Cadastro</h2>
 
+<div *ngIf="feedbackMessage" class="feedback-message">{{ feedbackMessage }}</div>
+
+
 <label>
   <input type="radio" name="userType" [(ngModel)]="userType" value="usuario" (change)="onUserTypeChange()" /> Usuário
 </label>
@@ -7,12 +10,13 @@
   <input type="radio" name="userType" [(ngModel)]="userType" value="jornalista" (change)="onUserTypeChange()" /> Jornalista
 </label>
 
-<form #formRef="ngForm" (submit)="onSubmit(formRef)">
+<form #formRef="ngForm" (ngSubmit)="onSignUp(formRef)">
 
   <!-- Campos para Usuários -->
   <div *ngIf="userType === 'usuario'">
     <input type="text" name="nome" placeholder="Nome" [(ngModel)]="userData.nome" />
     <input type="email" name="email" placeholder="E-mail" [(ngModel)]="userData.email" />
+    <input type="password" name="password" placeholder="Senha" [(ngModel)]="userData.password" />
     <input type="date" name="dataNascimento" placeholder="Data de Nascimento" [(ngModel)]="userData.dataNascimento" />
     <input type="text" name="pais" placeholder="País" [(ngModel)]="userData.pais" />
   </div>
@@ -21,12 +25,10 @@
   <div *ngIf="userType === 'jornalista'">
     <input type="text" name="nome" placeholder="Nome" [(ngModel)]="userData.nome" />
     <input type="email" name="email" placeholder="E-mail" [(ngModel)]="userData.email" />
+    <input type="password" name="password" placeholder="Senha" [(ngModel)]="userData.password" />
     <input type="date" name="dataNascimento" placeholder="Data de Nascimento" [(ngModel)]="userData.dataNascimento" />
     <input type="text" name="pais" placeholder="País" [(ngModel)]="userData.pais" />
     <input type="text" name="jornalRevista" placeholder="Jornal/Revista onde trabalha" [(ngModel)]="userData.jornalRevista" />
-
   </div>
-
-  <button (click)="onSignUp()">Cadastrar</button>
-
+  <button type="submit">Cadastrar</button>
 </form>
