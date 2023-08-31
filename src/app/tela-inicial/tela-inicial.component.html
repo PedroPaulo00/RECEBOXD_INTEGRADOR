@@ -5,20 +5,22 @@
     </div>
 
     <!-- Formulário de login -->
-    <form class="login-form">
+    <form class="login-form" (submit)="onSignIn(); $event.preventDefault()">
         <div class="input-group">
             <label for="login">Login</label>
-            <input type="text" id="login" name="login">
+            <!-- Adicionando vinculação de dados para email -->
+            <input type="email" id="login" name="login" [(ngModel)]="userData.email">
         </div>
         <div class="input-group">
             <label for="senha">Senha</label>
-            <input type="password" id="senha" name="senha">
+            <!-- Adicionando vinculação de dados para senha -->
+            <input type="password" id="senha" name="senha" [(ngModel)]="userData.password">
         </div>
         <button type="submit">Entrar</button>
     </form>
 
-     <!-- Link para a tela de cadastro -->
-  <div class="register-link">
-    <a [routerLink]="['/cadastro']">Cadastre-se</a>
-  </div>
+    <!-- Link para a tela de cadastro -->
+    <div class="register-link">
+        <a [routerLink]="['/cadastro']">Cadastre-se</a>
+    </div>
 </div>

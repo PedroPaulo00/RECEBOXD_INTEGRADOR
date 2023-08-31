@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FirestoreDataService } from '../firestore-data.service';
 import { NgForm } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -11,7 +12,8 @@ export class CadastroComponent {
   public userType!: string;
   public userData: any = {};
 
-  constructor(private firestoreDataService: FirestoreDataService) { }
+  constructor(private firestoreDataService: FirestoreDataService,
+    private authService : AuthService) { }
 
   onUserTypeChange(): void {
     this.userData = {}; // Reset any data when the user type changes
@@ -46,5 +48,9 @@ export class CadastroComponent {
   submitForm(): void {
     // Here you would typically send this data to the backend
     console.log('User data to submit:', this.userData);
+  }
+
+  onSignUp() {
+    this.authService.signUp(this.userData.email, this.userData.password);
   }
 }
