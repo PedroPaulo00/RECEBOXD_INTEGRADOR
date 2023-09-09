@@ -29,6 +29,14 @@ import { FutebolPrognosticosComponent } from './view/jornalistas/jornalistas-fut
 import { FutebolNoticiasComponent } from './view/jornalistas/jornalistas-futebol/futebol-noticias/futebol-noticias.component';
 import { BasqueteNoticiasComponent } from './view/jornalistas/jornalistas-basquete/basquete-noticias/basquete-noticias.component';
 import { BasquetePrognosticosComponent } from './view/jornalistas/jornalistas-basquete/basquete-prognosticos/basquete-prognosticos.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatGridListModule } from '@angular/material/grid-list';
+
+
 
 @NgModule({
   declarations: [
@@ -63,7 +71,13 @@ import { BasquetePrognosticosComponent } from './view/jornalistas/jornalistas-ba
     AngularFireDatabaseModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSidenavModule,
+    MatButtonModule,
+    MatIconModule,
+    MatListModule,
+    MatDividerModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

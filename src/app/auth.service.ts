@@ -49,6 +49,13 @@ export class AuthService {
       });
   }
 
+  // Em seu serviço AuthService
+
+logout(): Promise<void> {
+  return this.afAuth.signOut();
+}
+
+
   getUserData(): Observable<any> {
     return this.afAuth.authState.pipe(
         switchMap(user => {

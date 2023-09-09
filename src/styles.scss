@@ -1,25 +1,18 @@
+
+
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
 // Plus imports for other components in your app.
 
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap');
+
 @include mat.core();
 
-
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
 $Receboxd-primary: mat.define-palette(mat.$indigo-palette);
 $Receboxd-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
-
-// The warn palette is optional (defaults to red).
 $Receboxd-warn: mat.define-palette(mat.$red-palette);
 
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
 $Receboxd-theme: mat.define-light-theme((
   color: (
     primary: $Receboxd-primary,
@@ -28,66 +21,111 @@ $Receboxd-theme: mat.define-light-theme((
   )
 ));
 
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
 @include mat.all-component-themes($Receboxd-theme);
 
 body {
-    background-color: #363636;
-    color: #DCDCDC;
-    font-family: Arial, sans-serif;  /* Esta é uma sugestão de fonte. Você pode escolher a que preferir */
+    background-color: #c2f0c2;  /* Verde muito claro, quase branco */
+    color: #006400;  /* Verde bem escuro para o texto */
+    font-family: 'Oswald', sans-serif;  /* Definindo a fonte universal como Oswald-Regular */
     margin: 0;
     padding: 0;
 }
 
+input, textarea, select, button, input[type="button"], input[type="submit"] {
+    font-family: 'Oswald', sans-serif;  /* Definindo a fonte Oswald para campos de preenchimento e botões */
+}
+
 input, textarea, select {
-    background-color: #696969;
-    color: #DCDCDC;  /* Definindo a cor da fonte para coincidir com a cor geral de texto do app */
-    border: 1px solid #DCDCDC; /* Uma borda clara para os campos se destacarem no fundo escuro */
+    background-color: #98FB98;  /* Verde claro para campos de preenchimento */
+    color: #006400;  /* Verde bem escuro para o texto dentro dos campos de preenchimento */
+    border: 1px solid #006400; 
     padding: 8px;
-    margin: 4px 0;  /* Espaçamento básico acima e abaixo do campo */
-    border-radius: 4px;  /* Bordas arredondadas */
+    margin: 4px 0;  
+    border-radius: 4px;  
 }
 
-/* Estilo para o placeholder */
 input::placeholder, textarea::placeholder {
-    color: #A9A9A9; /* Uma cor um pouco mais clara que o fundo, mas ainda visível */
+    color: #A9A9A9; 
 }
 
-/* Estilo para o foco do campo */
 input:focus, textarea:focus, select:focus {
-    outline: none;  /* Remove o contorno padrão */
-    border-color: #8dc8db; /* Uma borda de foco azul, você pode ajustar conforme a estética do seu app */
+    outline: none;  
+    border-color: #32CD32;  /* Verde médio para o foco dos campos */
 }
 
-/* Estilos para os botões */
 button, input[type="button"], input[type="submit"] {
-    background-color: #000000;
-    color: #DCDCDC;  /* Definindo a cor da fonte para coincidir com a cor geral de texto do app */
-    border: 1px solid #DCDCDC; /* Uma borda clara para os botões se destacarem no fundo escuro */
-    padding: 8px 12px;  /* Espaçamento interno para o botão */
-    margin: 4px 0;  /* Espaçamento básico acima e abaixo do botão */
-    border-radius: 4px;  /* Bordas arredondadas */
-    cursor: pointer;  /* O cursor se transforma em uma mão quando passa sobre o botão */
-    transition: background-color 0.3s, color 0.3s; /* Transição suave para mudanças de cor */
+    background-color: #32CD32;  /* Verde médio para os botões */
+    color: #F0FFF0;  /* Verde muito claro para o texto nos botões */
+    border: 1px solid #006400; 
+    padding: 8px 12px;  
+    margin: 4px 0;  
+    border-radius: 4px;  
+    cursor: pointer;  
+    transition: background-color 0.3s, color 0.3s; 
 }
 
-/* Estilo para o botão quando o mouse passa por cima */
 button:hover, input[type="button"]:hover, input[type="submit"]:hover {
-    background-color: #1C1C1C;  /* Uma cor um pouco mais clara que o fundo original do botão para o efeito hover */
-    color: #00BFFF;  /* Cor da fonte no hover */
+    background-color: #228B22;  /* Verde um pouco mais escuro para o hover dos botões */
+    color: #F0FFF0;  
 }
 
-/* Estilo para o foco e ativo do botão */
 button:focus, button:active, input[type="button"]:focus, input[type="submit"]:focus, input[type="button"]:active, input[type="submit"]:active {
-    outline: none;  /* Remove o contorno padrão */
-    border-color: #00BFFF; /* Uma borda de foco/ativo azul */
+    outline: none;  
+    border-color: #228B22; 
 }
+
+.sidenav-container {
+    height: 100%;
+  }
+  
+  .sidenav {
+    width: 250px;
+  }
+  
+  .mat-icon {
+    margin-right: 20px;
+  }
+  
+  @font-face {
+    font-family: 'NBA Font';
+    src: url('assets/fonts/nba.ttf') format('truetype');
+  }
+
+  .sport-name {
+    color: white; /* Manter a cor do texto como branco */
+    font-family: 'NBA Font', sans-serif; /* Usar a fonte NBA que você definiu */
+    font-size: 24px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 5px;
+    position: absolute; 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    filter: brightness(1); 
+  }  
+  
+  .sport-container {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: brightness(0.5);
+    position: relative;
+  }
+
+
+  .sport-container:hover {
+    filter: brightness(1);
+  }
+  
 
 html, body { height: 100%; }
-body { margin: 0; font-family: 'Inter', sans-serif; 
+body { margin: 0; font-family: 'Oswald', sans-serif;  /* Definindo a fonte universal como Oswald-Regular */
         @supports (font-variation-settings: normal){
-        font-family: Inter, sans-serif;
+        font-family: 'Oswald', sans-serif;
         } 
     }

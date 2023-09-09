@@ -40,7 +40,8 @@ const routes: Routes = [
   { path: 'tenis-noticias', component: TenisNoticiasComponent },
   { path: 'tenis-prognosticos', component: TenisPrognosticosComponent },
   { path: 'basquete-noticias', component: BasqueteNoticiasComponent },
-  { path: 'basquete-prognosticos', component: BasquetePrognosticosComponent }
+  { path: 'basquete-prognosticos', component: BasquetePrognosticosComponent },
+  { path: 'login', component: LoginComponent}
 ]
 
 @NgModule({

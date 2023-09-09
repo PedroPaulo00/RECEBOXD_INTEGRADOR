@@ -1,9 +1,50 @@
-<div>
-    <button [routerLink]="['/perfil']">Perfil</button>
-    
-    <button [routerLink]="['/futebol']">Futebol</button>
-    <button [routerLink]="['/tenis']">Tênis</button>
-    <button [routerLink]="['/baseball']">Baseball</button>
-    <button [routerLink]="['/basquete']">Basquete</button>
-  </div>
-  
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav class="sidenav">
+    <mat-nav-list>
+      <mat-list-item>
+        <button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon aria-label="Fechar sidenav">close</mat-icon>
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button [routerLink]="['/perfil']">Perfil</button>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <button mat-button [routerLink]="['/futebol']">Futebol</button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button [routerLink]="['/tenis']">Tênis</button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button [routerLink]="['/baseball']">Baseball</button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button [routerLink]="['/basquete']">Basquete</button>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <button mat-button (click)="onLogout()">Sair</button>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <button mat-button (click)="sidenav.toggle()">Menu</button>
+
+    <mat-grid-list cols="2" rowHeight="2:1" gutterSize="10px">
+      <mat-grid-tile
+        *ngFor="let sport of sports"
+        (click)="navigateToSport(sport.route)"
+        class="sport-tile"
+      >
+        <div 
+          class="sport-container"
+          [style.backgroundImage]="'url(' + sport.image + ')'"
+        >
+          <span class="sport-name">{{ sport.name }}</span>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-sidenav-content>
+</mat-sidenav-container>
