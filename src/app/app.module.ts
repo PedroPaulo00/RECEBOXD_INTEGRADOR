@@ -1,36 +1,57 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { TelaInicialComponent } from './tela-inicial/tela-inicial.component';
-import { CadastroComponent } from './cadastro/cadastro.component';
-import { EsportesComponent } from './esportes/esportes.component';
-import { BaseballComponent } from './baseball/baseball.component';
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import { AdminPanelComponent } from './admin-panel/admin-panel.component';
-import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { AdminLoginComponent } from './view/admin/admin-login/admin-login.component';
 import { AppComponent } from './app.component';
-import { TesteComponent } from './teste/teste.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DetalhesCampeonatoComponent } from './detalhes-campeonato/detalhes-campeonato.component';
-import { DetalhesCampeonatoBaseballComponent } from './detalhes-campeonato-baseball/detalhes-campeonato-baseball.component';
+import { AdminCrudPartidasComponent } from './view/admin/admin-crud-partidas/admin-crud-partidas.component';
+import { TelaInicialComponent } from './view/tela-inicial/tela-inicial.component';
+import { MatchFilterPipe } from './MatchFilterPipe';
+import { RegisterComponent } from './view/crud/register/register.component';
+import { LoginComponent } from './view/crud/login/login.component';
+import { PerfilComponent } from './view/crud/perfil/perfil.component';
+import { BaseballComponent } from './view/esportes/baseball/baseball.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FutebolComponent } from './view/esportes/futebol/futebol.component';
+import { BasqueteComponent } from './view/esportes/basquete/basquete.component';
+import { TenisComponentComponent } from './view/esportes/tenis/tenis.component';
+import { BaseballNoticiasComponent } from './view/jornalistas/jornalistas-baseball/baseball-noticias/baseball-noticias.component';
+import { BaseballPrognosticosComponent } from './view/jornalistas/jornalistas-baseball/baseball-prognosticos/baseball-prognosticos.component';
+import { TenisNoticiasComponent } from './view/jornalistas/jornalistas-tenis/tenis-noticias/tenis-noticias.component';
+import { TenisPrognosticosComponent } from './view/jornalistas/jornalistas-tenis/tenis-prognosticos/tenis-prognosticos.component';
+import { FutebolPrognosticosComponent } from './view/jornalistas/jornalistas-futebol/futebol-prognosticos/futebol-prognosticos.component';
+import { FutebolNoticiasComponent } from './view/jornalistas/jornalistas-futebol/futebol-noticias/futebol-noticias.component';
+import { BasqueteNoticiasComponent } from './view/jornalistas/jornalistas-basquete/basquete-noticias/basquete-noticias.component';
+import { BasquetePrognosticosComponent } from './view/jornalistas/jornalistas-basquete/basquete-prognosticos/basquete-prognosticos.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TelaInicialComponent,
-    CadastroComponent,
-    EsportesComponent,
-    BaseballComponent,
-    DetalhesCampeonatoComponent,
-    DetalhesCampeonatoBaseballComponent,
-    AdminPanelComponent,
     AdminLoginComponent,
-    TesteComponent
+    AdminCrudPartidasComponent,
+    TelaInicialComponent,
+    MatchFilterPipe,
+    RegisterComponent,
+    LoginComponent,
+    PerfilComponent,
+    FutebolComponent,
+    BasqueteComponent,
+    TenisComponentComponent,
+    BaseballComponent,
+    BaseballPrognosticosComponent,
+    BaseballNoticiasComponent,
+    TenisNoticiasComponent,
+    TenisPrognosticosComponent,
+    FutebolPrognosticosComponent,
+    FutebolNoticiasComponent,
+    BasqueteNoticiasComponent,
+    BasquetePrognosticosComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +62,8 @@ import { DetalhesCampeonatoBaseballComponent } from './detalhes-campeonato-baseb
     AngularFirestoreModule,
     AngularFireDatabaseModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

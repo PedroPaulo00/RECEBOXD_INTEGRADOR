@@ -1,0 +1,44 @@
+<div *ngIf="currentUser?.userType === 'jornalista'">
+  <form (ngSubmit)="postPrognostico(prognosticoForm)" #prognosticoForm="ngForm">
+    <div>
+      <label for="titulo">Título</label>
+      <input type="text" id="titulo" name="titulo" [(ngModel)]="prognosticoFormModel.titulo" required>
+    </div>
+    
+    <div>
+      <label for="conteudo">Conteúdo</label>
+      <textarea id="conteudo" name="conteudo" [(ngModel)]="prognosticoFormModel.conteudo" required></textarea>
+    </div>
+
+    <div>
+      <label for="campeonato">Campeonato:</label>
+      <input type="text" id="campeonato" name="campeonato" [(ngModel)]="prognosticoFormModel.campeonato" required>
+    </div>
+
+    <div>
+      <label for="esporte">Esporte</label>
+      <select id="esporte" name="esporte" [(ngModel)]="prognosticoFormModel.esporte" required>
+        <option value="Futebol">Futebol</option>
+        <option value="Basquete">Basquete</option>
+        <option value="Baseball">Baseball</option>
+        <option value="Tênis">Tênis</option>
+      </select>
+    </div>
+    
+    <button type="submit" [disabled]="!prognosticoForm.form.valid">Postar Prognóstico</button>
+  </form>
+</div>
+
+
+
+<div *ngIf="currentUser?.userType === 'usuario' || currentUser?.userType === 'jornalista'">
+  <div *ngFor="let prognostico of prognosticos">
+    <ng-container *ngIf="prognostico.esporte === 'Basquete'">
+      <h2>{{ prognostico.titulo }}</h2>
+      <p>{{ prognostico.conteudo }}</p>
+      <p><strong>Campeonato:</strong> {{ prognostico.campeonato }}</p>
+      <button (click)="editPrognostico(prognostico)">Editar</button>
+      <button (click)="deletePrognostico(prognostico.id)">Excluir</button>
+    </ng-container>
+  </div>
+</div>

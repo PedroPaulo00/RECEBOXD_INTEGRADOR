@@ -1,0 +1,44 @@
+<div *ngIf="currentUser?.userType === 'jornalista'">
+  <form (ngSubmit)="postNoticia(noticiaForm)" #noticiaForm="ngForm">
+    <div>
+      <label for="titulo">Título</label>
+      <input type="text" id="titulo" name="titulo" [(ngModel)]="noticiaFormModel.titulo" required>
+    </div>
+    
+    <div>
+      <label for="conteudo">Conteúdo</label>
+      <textarea id="conteudo" name="conteudo" [(ngModel)]="noticiaFormModel.conteudo" required></textarea>
+    </div>
+
+    <div>
+      <label for="campeonato">Campeonato:</label>
+      <input type="text" id="campeonato" name="campeonato" [(ngModel)]="noticiaFormModel.campeonato" required>
+    </div>
+
+    <div>
+      <label for="esporte">Esporte</label>
+      <select id="esporte" name="esporte" [(ngModel)]="noticiaFormModel.esporte" required>
+        <option value="Futebol">Futebol</option>
+        <option value="Basquete">Basquete</option>
+        <option value="Baseball">Baseball</option>
+        <option value="Tênis">Tênis</option>
+      </select>
+    </div>
+    
+    <button type="submit" [disabled]="!noticiaForm.form.valid">Postar Notícia</button>
+  </form>
+</div>
+
+
+
+<div *ngIf="currentUser?.userType === 'usuario' || currentUser?.userType === 'jornalista'">
+  <div *ngFor="let noticia of noticias">
+    <ng-container *ngIf="noticia.esporte === 'Tenis'">
+      <h2>{{ noticia.titulo }}</h2>
+      <p>{{ noticia.conteudo }}</p>
+      <p><strong>Campeonato:</strong> {{ noticia.campeonato }}</p>
+      <button (click)="editNoticia(noticia)">Editar</button>
+      <button (click)="deleteNoticia(noticia.id)">Excluir</button>
+    </ng-container>
+  </div>
+</div>

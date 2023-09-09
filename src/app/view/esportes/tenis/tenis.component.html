@@ -1,0 +1,45 @@
+<div>
+    <label>
+      Status da partida:
+      <select [(ngModel)]="filterStatus" (change)="filterPartidas()">
+        <option value="">Todos</option>
+        <option *ngFor="let status of statuses" [value]="status">{{status}}</option>
+      </select>
+    </label>
+    
+    <label>
+      Nome do Campeonato:
+      <input type="text" [(ngModel)]="filterChampionship" (input)="filterPartidas()" />
+    </label>
+    
+    <label>
+      Pesquisar Campeonato:
+      <input type="text" [(ngModel)]="searchQuery" (input)="filterPartidas()" />
+    </label>
+  </div>
+  
+  <div *ngFor="let status of filteredPartidasKeys">
+    <h2>{{ status }}</h2>
+    <div *ngFor="let championship of getChampionshipKeys(status)">
+      <h3>{{ championship }}</h3>
+      <ul>
+        <li *ngFor="let partida of filteredPartidas[status][championship]">
+          {{ partida.teamA }} vs {{ partida.teamB }} - {{ partida.date }}
+          <button (click)="onPartidaClick(partida)">Ver Detalhes</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+  <div *ngIf="selectedPartida">
+    <h3>Detalhes da Partida</h3>
+    <p>{{ selectedPartida.teamA }} vs {{ selectedPartida.teamB }}</p>
+    <p>Data: {{ selectedPartida.date }}</p>
+    <p>Campeonato: {{ selectedPartida.championshipName }}</p>
+    <p>Fase: {{ selectedPartida.phase }}</p>
+    <p>Localização: {{ selectedPartida.location }}</p>
+  </div>
+
+  <button [routerLink]="['/tenis-prognosticos']">Prognósticos</button>
+<button [routerLink]="['/tenis-noticias']">Notícias</button>
+  
