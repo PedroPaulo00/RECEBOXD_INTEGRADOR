@@ -144,7 +144,20 @@ button:focus, button:active, input[type="button"]:focus, input[type="submit"]:fo
     left: 10px;
   }
 
+  .upper-right-buttons {
+    display: flex;
+    justify-content: flex-start;
+    position: absolute;
+    top: 10px; /* Ajuste conforme necessário para evitar a sobreposição com a top bar */
+    right: 10px;/* Certifique-se de que está acima de outros elementos, ajuste conforme necessário */
+  }
+
   .top-bar {
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    position: sticky;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -234,6 +247,47 @@ form {
   .championship-title {
     text-align: center;
   }
+
+  .top-news-carousel {
+    top: 50px; /* Ajuste este valor de acordo com a altura da sua top-bar */
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: #f8f9fa;
+    overflow: hidden;
+  }
+  
+  .top-news-carousel div {
+    display: none;
+  }
+  
+  .top-news-carousel div.active {
+    display: block;
+    }
+
+    .carousel-buttons {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 5px;
+    }
+    
+    .carousel-button {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #ccc;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .carousel-button.active {
+      background-color: #000;
+    }
+    
+    
 
 
 html, body { height: 100%; }

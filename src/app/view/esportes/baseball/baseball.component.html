@@ -39,6 +39,7 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
+    
 
     <div>
       <label>
@@ -55,6 +56,10 @@
       </label>
     </div>
 
+    <div class="upper-right-buttons">
+      <button [routerLink]="['/baseball-prognosticos']">Prognósticos</button>
+      <button [routerLink]="['/baseball-noticias']">Notícias</button>
+    </div>
       
       <div class="status-section" style="display: flex; justify-content: space-between;">
 
@@ -133,8 +138,5 @@
         </ng-container>
       </div>
     </div>
-    
-    <button [routerLink]="['/baseball-prognosticos']">Prognósticos</button>
-    <button [routerLink]="['/baseball-noticias']">Notícias</button>
   </mat-sidenav-content>
 </mat-sidenav-container>

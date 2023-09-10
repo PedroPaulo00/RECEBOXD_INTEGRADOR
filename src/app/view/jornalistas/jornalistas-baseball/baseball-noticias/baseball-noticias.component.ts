@@ -17,6 +17,8 @@ export class BaseballNoticiasComponent implements OnInit {
   editingNoticia: any = null;
   noticiaFormModel: any = {};
   userNickname: string | null = null;
+  ultimasNoticias: any[] = [];
+  currentNewsIndex = 0;
 
   constructor(private firestore: AngularFirestore, private authService : AuthService, private router : Router) { }
 
@@ -33,6 +35,8 @@ export class BaseballNoticiasComponent implements OnInit {
     ).subscribe(noticiasData => {
       if (noticiasData) {
         this.noticias = noticiasData;
+        this.noticias.sort((a, b) => new Date(b.data).getTime() - new Date(a.data).getTime());
+        this.ultimasNoticias = this.noticias.filter(noticia => noticia.esporte === 'Baseball').slice(0, 5);
       }
     });
     this.authService.getUserData().subscribe(userData => {
@@ -40,12 +44,21 @@ export class BaseballNoticiasComponent implements OnInit {
     }, error => {
       console.error('Erro ao buscar os dados do usuário', error);
     });
+  setInterval(() => {
+    this.currentNewsIndex = (this.currentNewsIndex + 1) % this.ultimasNoticias.length;
+  }, 10000);
   }
+
+  setCurrentNewsIndex(index: number) {
+    this.currentNewsIndex = index;
+  }
+  
   
   postNoticia(form: NgForm): void {
     if (this.currentUser?.userType === 'jornalista') {
       if (form.valid) {
-        const noticiaData = form.value;
+        const noticiaData = { ...form.value, data: new Date() };
+        
 
         if (this.editingNoticia) {
           this.firestore.collection('noticias').doc(this.editingNoticia.id).update(noticiaData)
@@ -75,7 +88,7 @@ export class BaseballNoticiasComponent implements OnInit {
 
   editNoticia(noticia: any): void {
     this.editingNoticia = noticia;
-    this.noticiaFormModel = { ...noticia }; // Inicialize o modelo do formulário com os valores da notícia
+    this.noticiaFormModel = { ...noticia, data: new Date(noticia.data) }; // Convertendo a data em objeto Date
   }  
 
   deleteNoticia(noticiaId: string): void {

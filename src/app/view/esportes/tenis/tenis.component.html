@@ -54,42 +54,89 @@
         <input type="text" [(ngModel)]="searchQuery" (input)="filterPartidas()" />
       </label>
     </div>
-    
-    <div *ngFor="let status of filteredPartidasKeys">
-      <h2>{{ status }}</h2>
-      <div *ngFor="let championship of getChampionshipKeys(status)">
-        <h3>{{ championship }}</h3>
-        <ul>
-          <li *ngFor="let partida of filteredPartidas[status][championship]">
-            <ng-container *ngIf="status === 'Evento Futuro'">
-              {{ partida.teamA }} vs {{ partida.teamB }} <br>{{ partida.date }} <br> {{ partida.time }}
-            </ng-container>
-            <ng-container *ngIf="status === 'Ao-Vivo'">
-              {{ partida.teamA }} {{ partida.scoreA }} vs {{ partida.scoreB }} {{ partida.teamB }}
-            </ng-container>
-            <ng-container *ngIf="status === 'Finalizado'">
+
+      
+      <div class="status-section" style="display: flex; justify-content: space-between;">
+
+        <!-- Coluna para partidas finalizadas -->
+      <div style="width: 30%;">
+        <h2 style="text-align: center;">Finalizado</h2>
+        <ng-container *ngIf="filteredPartidas['Finalizado']">
+          <ng-container *ngFor="let championship of getChampionshipKeys('Finalizado')">
+            <h3 style="text-align: center;">{{ championship }}</h3>
+            <div *ngFor="let partida of filteredPartidas['Finalizado'][championship]" class="partida-card">
               {{ partida.teamA }} {{ partida.scoreA }} vs {{ partida.scoreB }} {{ partida.teamB }} <br> {{ partida.date }} <br> {{ partida.time }}
-            </ng-container>
-            <br>
-            <button (click)="onPartidaClick(partida)">Ver Detalhes</button>
-          </li>
-        </ul>
+              <br><button (click)="onPartidaClick(partida)">Ver Detalhes</button>
+
+              <div *ngIf="selectedPartida === partida">
+                <h3>Detalhes da Partida</h3>
+                <p>{{ selectedPartida.teamA }} vs {{ selectedPartida.teamB }}</p>
+                <p>Data: {{ selectedPartida.date }}</p>
+                <p>Horário: {{ selectedPartida.time }}</p>
+                <p>Campeonato: {{ selectedPartida.championshipName }}</p>
+                <p>Fase: {{ selectedPartida.phase }}</p>
+                <p>Estádio: {{ selectedPartida.stadium }}</p>
+                <p>Localização: {{ selectedPartida.location }}</p>
+              </div>
+            </div>
+          </ng-container>
+        </ng-container>
+      </div>
+
+         <!-- Coluna para partidas ao vivo -->
+      <div style="width: 30%;">
+        <h2 style="text-align: center;">Ao-Vivo</h2>
+        <ng-container *ngIf="filteredPartidas['Ao-Vivo']">
+          <ng-container *ngFor="let championship of getChampionshipKeys('Ao-Vivo')">
+            <h3 style="text-align: center;">{{ championship }}</h3>
+            <div *ngFor="let partida of filteredPartidas['Ao-Vivo'][championship]" class="partida-card">
+              {{ partida.teamA }} {{ partida.scoreA }} vs {{ partida.scoreB }} {{ partida.teamB }}
+              <br><button (click)="onPartidaClick(partida)">Ver Detalhes</button>
+
+              <div *ngIf="selectedPartida === partida">
+                <h3>Detalhes da Partida</h3>
+                <p>{{ selectedPartida.teamA }} vs {{ selectedPartida.teamB }}</p>
+                <p>Data: {{ selectedPartida.date }}</p>
+                <p>Horário: {{ selectedPartida.time }}</p>
+                <p>Campeonato: {{ selectedPartida.championshipName }}</p>
+                <p>Fase: {{ selectedPartida.phase }}</p>
+                <p>Estádio: {{ selectedPartida.stadium }}</p>
+                <p>Localização: {{ selectedPartida.location }}</p>
+              </div>
+            </div>
+          </ng-container>
+        </ng-container>
+      </div>
+
+      <!-- Coluna para eventos futuros -->
+      <div style="width: 30%;">
+        <h2 style="text-align: center;">Evento Futuro</h2>
+        <ng-container *ngIf="filteredPartidas['Evento Futuro']">
+          <ng-container *ngFor="let championship of getChampionshipKeys('Evento Futuro')">
+            <h3 style="text-align: center;">{{ championship }}</h3>
+            <div *ngFor="let partida of filteredPartidas['Evento Futuro'][championship]" class="partida-card">
+              {{ partida.teamA }} vs {{ partida.teamB }} <br>{{ partida.date }} <br> {{ partida.time }}
+              <br><button (click)="onPartidaClick(partida)">Ver Detalhes</button>
+
+              <div *ngIf="selectedPartida === partida">
+                <h3>Detalhes da Partida</h3>
+                <p>{{ selectedPartida.teamA }} vs {{ selectedPartida.teamB }}</p>
+                <p>Data: {{ selectedPartida.date }}</p>
+                <p>Horário: {{ selectedPartida.time }}</p>
+                <p>Campeonato: {{ selectedPartida.championshipName }}</p>
+                <p>Fase: {{ selectedPartida.phase }}</p>
+                <p>Estádio: {{ selectedPartida.stadium }}</p>
+                <p>Localização: {{ selectedPartida.location }}</p>
+              </div>
+            </div>
+          </ng-container>
+        </ng-container>
       </div>
     </div>
-    
-    
-    <div *ngIf="selectedPartida">
-      <h3>Detalhes da Partida</h3>
-      <p>{{ selectedPartida.teamA }} vs {{ selectedPartida.teamB }}</p>
-      <p>Data: {{ selectedPartida.date }}</p>
-      <p>Horário: {{ selectedPartida.time }}</p>
-      <p>Campeonato: {{ selectedPartida.championshipName }}</p>
-      <p>Fase: {{ selectedPartida.phase }}</p>
-      <p>Estádio: {{ selectedPartida.stadium }}</p>
-      <p>Localização: {{ selectedPartida.location }}</p>
+    <div class="upper-right-buttons">
+      <button [routerLink]="['/tenis-prognosticos']">Prognósticos</button>
+      <button [routerLink]="['/tenis-noticias']">Notícias</button>
     </div>
     
-    <button [routerLink]="['/tenis-prognosticos']">Prognósticos</button>
-    <button [routerLink]="['/tenis-noticias']">Notícias</button>
   </mat-sidenav-content>
 </mat-sidenav-container>

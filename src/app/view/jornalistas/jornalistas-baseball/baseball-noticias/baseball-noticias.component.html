@@ -7,6 +7,19 @@
   </div>
 </div>
 
+<div class="top-news-carousel">
+  <div *ngFor="let noticia of ultimasNoticias; let i = index" [ngClass]="{ 'active': i === currentNewsIndex }">
+    <h2>{{ noticia.titulo }}</h2>
+    <p>{{ noticia.conteudo }}</p>
+    <p><strong>Campeonato:</strong> {{ noticia.campeonato }}</p>
+  </div>
+  <button *ngFor="let noticia of ultimasNoticias; let i = index" 
+        (click)="setCurrentNewsIndex(i)" 
+        [ngClass]="{ 'active': i === currentNewsIndex }" 
+        class="carousel-button">
+  </button>
+</div>
+
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #sidenav class="sidenav">
     <mat-nav-list>
