@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { from } from 'rxjs';
 import { AuthService } from 'src/app/auth.service';
+import { FirestoreDataService } from 'src/app/firestore-data.service';
 
 @Component({
   selector: 'app-perfil',
@@ -11,10 +12,13 @@ import { AuthService } from 'src/app/auth.service';
 export class PerfilComponent {
   userData: any = {};
   errorMessage: string | null = null;
+  userNickname: string | null = null;
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private firestoreDataService: FirestoreDataService,
+
   ) { }
 
   ngOnInit(): void {
@@ -63,4 +67,19 @@ export class PerfilComponent {
     );
   }
   
+  onLogout(): void {
+    this.authService.logout().then(() => {
+      this.router.navigate(['/login']);
+    }).catch(error => {
+      console.error('Erro ao deslogar', error);
+    });
+  }
+
+  navigateToProfile(): void {
+    this.router.navigate(['/perfil']);
+  }
+
+  navigateToTelaInicial(): void {
+    this.router.navigate(['/tela-inicial']);
+  }
 }

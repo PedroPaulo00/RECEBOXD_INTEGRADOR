@@ -50,7 +50,7 @@ input::placeholder, textarea::placeholder {
 
 input:focus, textarea:focus, select:focus {
     outline: none;  
-    border-color: #32CD32;  /* Verde médio para o foco dos campos */
+    border-color: #71e771;  /* Verde médio para o foco dos campos */
 }
 
 button, input[type="button"], input[type="submit"] {
@@ -115,13 +115,71 @@ button:focus, button:active, input[type="button"]:focus, input[type="submit"]:fo
     justify-content: center;
     filter: brightness(0.5);
     position: relative;
+    cursor: pointer;
   }
 
 
   .sport-container:hover {
     filter: brightness(1);
   }
+
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #91f091;  /* ou qualquer outra cor que você desejar */
+    color: #F0FFF0;
+  }
   
+  .receboxd-logo {
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .user-section {
+    display: flex;
+    align-items: center;
+  }
+  
+  .user-image {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+  
+  .nickname {
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .nickname:hover {
+    text-decoration: underline;
+  }
+  
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%; /* Ajuste a largura conforme necessário */
+    background: #fff; /* Ajuste a cor de fundo conforme necessário */
+    padding: 20px;
+    border-radius: 10px; /* Ajuste o raio da borda conforme necessário */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Ajuste a sombra conforme necessário */
+}
+
 
 html, body { height: 100%; }
 body { margin: 0; font-family: 'Oswald', sans-serif;  /* Definindo a fonte universal como Oswald-Regular */

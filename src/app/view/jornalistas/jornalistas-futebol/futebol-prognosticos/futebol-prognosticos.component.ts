@@ -3,6 +3,7 @@ import { AuthService } from "../../../../auth.service";
 import { AngularFirestore } from "@angular/fire/compat/firestore";
 import { NgForm } from "@angular/forms";
 import { of, switchMap } from "rxjs";
+import { Router } from "@angular/router";
 
 // prognostico.component.ts
 @Component({
@@ -15,8 +16,9 @@ export class FutebolPrognosticosComponent implements OnInit {
   prognosticos: any[] = [];
   editingPrognostico: any = null;
   prognosticoFormModel: any = {};
+  userNickname: string | null = null;
 
-  constructor(private authService: AuthService, private firestore: AngularFirestore) { }
+  constructor(private firestore: AngularFirestore, private authService : AuthService, private router : Router) { }
 
   ngOnInit(): void {
     this.authService.getUserData().pipe(
@@ -32,6 +34,11 @@ export class FutebolPrognosticosComponent implements OnInit {
       if (prognosticosData) {
         this.prognosticos = prognosticosData;
       }
+    });
+    this.authService.getUserData().subscribe(userData => {
+      this.userNickname = userData.nickname;
+    }, error => {
+      console.error('Erro ao buscar os dados do usuário', error);
     });
   }
   
@@ -80,4 +87,20 @@ export class FutebolPrognosticosComponent implements OnInit {
         console.error('Erro ao excluir prognostico:', error);
       });
   }  
+
+  onLogout(): void {
+    this.authService.logout().then(() => {
+      this.router.navigate(['/login']);
+    }).catch(error => {
+      console.error('Erro ao deslogar', error);
+    });
+  }
+
+  navigateToProfile(): void {
+    this.router.navigate(['/perfil']);
+  }
+
+  navigateToTelaInicial(): void {
+    this.router.navigate(['/tela-inicial']);
+  }
 }

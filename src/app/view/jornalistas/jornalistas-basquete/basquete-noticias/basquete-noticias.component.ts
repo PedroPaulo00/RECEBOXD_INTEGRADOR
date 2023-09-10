@@ -3,6 +3,7 @@ import { AuthService } from "../../../../auth.service";
 import { NgForm } from "@angular/forms";
 import { AngularFirestore } from "@angular/fire/compat/firestore";
 import { of, switchMap } from "rxjs";
+import { Router } from "@angular/router";
 
 // noticia.component.ts
 @Component({
@@ -15,8 +16,9 @@ export class BasqueteNoticiasComponent implements OnInit {
   noticias: any[] = [];
   editingNoticia: any = null;
   noticiaFormModel: any = {};
+  userNickname: string | null = null;
 
-  constructor(private authService: AuthService, private firestore: AngularFirestore) { }
+  constructor(private firestore: AngularFirestore, private authService : AuthService, private router : Router) { }
 
   ngOnInit(): void {
     this.authService.getUserData().pipe(
@@ -32,6 +34,11 @@ export class BasqueteNoticiasComponent implements OnInit {
       if (noticiasData) {
         this.noticias = noticiasData;
       }
+    });
+    this.authService.getUserData().subscribe(userData => {
+      this.userNickname = userData.nickname;
+    }, error => {
+      console.error('Erro ao buscar os dados do usuário', error);
     });
   }
   
@@ -80,5 +87,21 @@ export class BasqueteNoticiasComponent implements OnInit {
         console.error('Erro ao excluir notícia:', error);
       });
   }  
+
+  onLogout(): void {
+    this.authService.logout().then(() => {
+      this.router.navigate(['/login']);
+    }).catch(error => {
+      console.error('Erro ao deslogar', error);
+    });
+  }
+
+  navigateToProfile(): void {
+    this.router.navigate(['/perfil']);
+  }
+
+  navigateToTelaInicial(): void {
+    this.router.navigate(['/tela-inicial']);
+  }
 }
 

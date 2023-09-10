@@ -15,12 +15,21 @@ export class TelaInicialComponent {
     { name: 'Basquete', image: 'assets/images/basquete-image.jpg', route: '/basquete' }
   ];
 
+  userNickname: string | null = null;
+
   constructor(private router: Router, private authService: AuthService) {}
 
   navigateToSport(route: string): void {
     this.router.navigate([route]);
   }
   
+  ngOnInit(): void {
+    this.authService.getUserData().subscribe(userData => {
+      this.userNickname = userData.nickname;
+    }, error => {
+      console.error('Erro ao buscar os dados do usuário', error);
+    });
+  }
 
   onLogout(): void {
     this.authService.logout().then(() => {
@@ -30,6 +39,12 @@ export class TelaInicialComponent {
     });
   }
 
+  navigateToProfile(): void {
+    this.router.navigate(['/perfil']);
+  }
 
+  navigateToTelaInicial(): void {
+    this.router.navigate(['/tela-inicial']);
+  }
   
 }

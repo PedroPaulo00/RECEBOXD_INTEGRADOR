@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth.service';
 import { FirestoreDataService } from 'src/app/firestore-data.service';
 import { Match } from 'src/app/model/match.model';
 
@@ -15,11 +17,17 @@ export class BasqueteComponent implements OnInit {
   statuses: string[] = ['Evento Futuro', 'Ao-Vivo', 'Finalizado'];
   filterStatus: string = '';
   filterChampionship: string = '';
+  userNickname: string | null = null;
 
-  constructor(private firestoreDataService: FirestoreDataService) { }
+  constructor(private firestoreDataService: FirestoreDataService, private authService : AuthService, private router : Router) { }
 
   ngOnInit(): void {
     this.fetchMatches();
+    this.authService.getUserData().subscribe(userData => {
+      this.userNickname = userData.nickname;
+    }, error => {
+      console.error('Erro ao buscar os dados do usuário', error);
+    });
   }
 
   fetchMatches(): void {
@@ -61,5 +69,21 @@ export class BasqueteComponent implements OnInit {
 
   onPartidaClick(partida: Match): void {
     this.selectedPartida = partida;
+  }
+
+  onLogout(): void {
+    this.authService.logout().then(() => {
+      this.router.navigate(['/login']);
+    }).catch(error => {
+      console.error('Erro ao deslogar', error);
+    });
+  }
+
+  navigateToProfile(): void {
+    this.router.navigate(['/perfil']);
+  }
+
+  navigateToTelaInicial(): void {
+    this.router.navigate(['/tela-inicial']);
   }
 }

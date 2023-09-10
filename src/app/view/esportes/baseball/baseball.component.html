@@ -1,57 +1,100 @@
-<div>
-  <label>
-    Status da partida:
-    <select [(ngModel)]="filterStatus" (change)="filterPartidas()">
-      <option value="">Todos</option>
-      <option *ngFor="let status of statuses" [value]="status">{{status}}</option>
-    </select>
-  </label>
-  
-  <label>
-    Nome do Campeonato:
-    <input type="text" [(ngModel)]="filterChampionship" (input)="filterPartidas()" />
-  </label>
-  
-  <label>
-    Pesquisar Campeonato:
-    <input type="text" [(ngModel)]="searchQuery" (input)="filterPartidas()" />
-  </label>
-</div>
-
-<div *ngFor="let status of filteredPartidasKeys">
-  <h2>{{ status }}</h2>
-  <div *ngFor="let championship of getChampionshipKeys(status)">
-    <h3>{{ championship }}</h3>
-    <ul>
-      <li *ngFor="let partida of filteredPartidas[status][championship]">
-        <ng-container *ngIf="status === 'Evento Futuro'">
-          {{ partida.teamA }} vs {{ partida.teamB }} <br>{{ partida.date }} <br> {{ partida.time }}
-        </ng-container>
-        <ng-container *ngIf="status === 'Ao-Vivo'">
-          {{ partida.teamA }} {{ partida.scoreA }} vs {{ partida.scoreB }} {{ partida.teamB }}
-        </ng-container>
-        <ng-container *ngIf="status === 'Finalizado'">
-          {{ partida.teamA }} {{ partida.scoreA }} vs {{ partida.scoreB }} {{ partida.teamB }} <br> {{ partida.date }} <br> {{ partida.time }}
-        </ng-container>
-        <br>
-        <button (click)="onPartidaClick(partida)">Ver Detalhes</button>
-      </li>
-    </ul>
+<div class="top-bar">
+  <button mat-button (click)="sidenav.toggle()">Menu</button>
+  <div class="receboxd-logo" (click)="navigateToTelaInicial()">RECEBOXD</div>
+  <div class="user-section">
+    <div class="nickname" (click)="navigateToProfile()">{{ userNickname }} </div>
+    <img src="assets/images/perfil-template.png" alt="User Image" class="user-image"/>
   </div>
 </div>
 
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav class="sidenav">
+    <mat-nav-list>
+      <mat-list-item>
+        <button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon aria-label="Fechar sidenav">close</mat-icon>
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button [routerLink]="['/perfil']">Perfil</button>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <button mat-button [routerLink]="['/futebol']">Futebol</button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button [routerLink]="['/tenis']">Tênis</button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button [routerLink]="['/baseball']">Baseball</button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button [routerLink]="['/basquete']">Basquete</button>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <button mat-button (click)="onLogout()">Sair</button>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
 
-<div *ngIf="selectedPartida">
-  <h3>Detalhes da Partida</h3>
-  <p>{{ selectedPartida.teamA }} vs {{ selectedPartida.teamB }}</p>
-  <p>Data: {{ selectedPartida.date }}</p>
-  <p>Horário: {{ selectedPartida.time }}</p>
-  <p>Campeonato: {{ selectedPartida.championshipName }}</p>
-  <p>Fase: {{ selectedPartida.phase }}</p>
-  <p>Estádio: {{ selectedPartida.stadium }}</p>
-  <p>Localização: {{ selectedPartida.location }}</p>
-</div>
+  <mat-sidenav-content>
 
-<button [routerLink]="['/baseball-prognosticos']">Prognósticos</button>
-<button [routerLink]="['/baseball-noticias']">Notícias</button>
-
+    <div>
+      <label>
+        Status da partida:
+        <select [(ngModel)]="filterStatus" (change)="filterPartidas()">
+          <option value="">Todos</option>
+          <option *ngFor="let status of statuses" [value]="status">{{status}}</option>
+        </select>
+      </label>
+      
+      <label>
+        Nome do Campeonato:
+        <input type="text" [(ngModel)]="filterChampionship" (input)="filterPartidas()" />
+      </label>
+      
+      <label>
+        Pesquisar Campeonato:
+        <input type="text" [(ngModel)]="searchQuery" (input)="filterPartidas()" />
+      </label>
+    </div>
+    
+    <div *ngFor="let status of filteredPartidasKeys">
+      <h2>{{ status }}</h2>
+      <div *ngFor="let championship of getChampionshipKeys(status)">
+        <h3>{{ championship }}</h3>
+        <ul>
+          <li *ngFor="let partida of filteredPartidas[status][championship]">
+            <ng-container *ngIf="status === 'Evento Futuro'">
+              {{ partida.teamA }} vs {{ partida.teamB }} <br>{{ partida.date }} <br> {{ partida.time }}
+            </ng-container>
+            <ng-container *ngIf="status === 'Ao-Vivo'">
+              {{ partida.teamA }} {{ partida.scoreA }} vs {{ partida.scoreB }} {{ partida.teamB }}
+            </ng-container>
+            <ng-container *ngIf="status === 'Finalizado'">
+              {{ partida.teamA }} {{ partida.scoreA }} vs {{ partida.scoreB }} {{ partida.teamB }} <br> {{ partida.date }} <br> {{ partida.time }}
+            </ng-container>
+            <br>
+            <button (click)="onPartidaClick(partida)">Ver Detalhes</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    
+    <div *ngIf="selectedPartida">
+      <h3>Detalhes da Partida</h3>
+      <p>{{ selectedPartida.teamA }} vs {{ selectedPartida.teamB }}</p>
+      <p>Data: {{ selectedPartida.date }}</p>
+      <p>Horário: {{ selectedPartida.time }}</p>
+      <p>Campeonato: {{ selectedPartida.championshipName }}</p>
+      <p>Fase: {{ selectedPartida.phase }}</p>
+      <p>Estádio: {{ selectedPartida.stadium }}</p>
+      <p>Localização: {{ selectedPartida.location }}</p>
+    </div>
+    
+    <button [routerLink]="['/baseball-prognosticos']">Prognósticos</button>
+    <button [routerLink]="['/baseball-noticias']">Notícias</button>
+  </mat-sidenav-content>
+</mat-sidenav-container>
