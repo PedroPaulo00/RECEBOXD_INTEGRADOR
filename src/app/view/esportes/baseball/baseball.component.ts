@@ -69,8 +69,12 @@ export class BaseballComponent implements OnInit {
     return Object.keys(this.filteredPartidas[status]);
   }
 
-  onPartidaClick(partida: Match): void {
-    this.selectedPartida = partida;
+  onPartidaClick(partida: any): void {
+    if (this.selectedPartida === partida) {
+      this.selectedPartida = null;
+    } else {
+      this.selectedPartida = partida;
+    }
   }
 
 

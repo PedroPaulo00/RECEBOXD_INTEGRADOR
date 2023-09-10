@@ -74,8 +74,21 @@ button:focus, button:active, input[type="button"]:focus, input[type="submit"]:fo
     border-color: #228B22; 
 }
 
+.button-section {
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
 .sidenav-container {
     height: 100%;
+    display: flex;
+  }
+
+  .sidenav-content {
+    padding: 20px;
   }
   
   .sidenav {
@@ -123,16 +136,25 @@ button:focus, button:active, input[type="button"]:focus, input[type="submit"]:fo
     filter: brightness(1);
   }
 
+  .filter-section {
+    display: flex;
+    justify-content: flex-start;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+
   .top-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: #91f091;
     padding: 10px;
-    background-color: #91f091;  /* ou qualquer outra cor que você desejar */
+    border-bottom: 1px solid #e0e0e0;
     color: #F0FFF0;
   }
-  
-  .receboxd-logo {
+
+   .receboxd-logo {
     font-size: 24px;
     font-weight: bold;
     cursor: pointer;
@@ -144,16 +166,16 @@ button:focus, button:active, input[type="button"]:focus, input[type="submit"]:fo
   }
   
   .user-image {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     margin-right: 10px;
     margin-left: 10px;
   }
   
   .nickname {
-    cursor: pointer;
     margin-right: 10px;
+    cursor: pointer;
   }
   
   .nickname:hover {
@@ -179,6 +201,39 @@ form {
     border-radius: 10px; /* Ajuste o raio da borda conforme necessário */
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Ajuste a sombra conforme necessário */
 }
+
+.partida-card {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .teamA, .teamB {
+    font-weight: bold;
+  }
+  .scoreA, .scoreB {
+    color: red;
+  }
+  .event-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  .eventos-finalizados, .eventos-ao-vivo, .eventos-futuros {
+    width: 32%; /* Ajuste conforme necessário */
+  }
+
+  .partida-card h3 {
+    margin-top: 0;
+    text-align: center;
+  }
+
+  .championship-title {
+    text-align: center;
+  }
 
 
 html, body { height: 100%; }

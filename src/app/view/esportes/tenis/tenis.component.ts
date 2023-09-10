@@ -67,9 +67,14 @@ export class TenisComponentComponent implements OnInit {
     return Object.keys(this.filteredPartidas[status]);
   }
 
-  onPartidaClick(partida: Match): void {
-    this.selectedPartida = partida;
+  onPartidaClick(partida: any): void {
+    if (this.selectedPartida === partida) {
+      this.selectedPartida = null;
+    } else {
+      this.selectedPartida = partida;
+    }
   }
+  
 
   onLogout(): void {
     this.authService.logout().then(() => {

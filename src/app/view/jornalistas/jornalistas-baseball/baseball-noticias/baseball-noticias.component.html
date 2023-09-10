@@ -78,9 +78,11 @@
           <h2>{{ noticia.titulo }}</h2>
           <p>{{ noticia.conteudo }}</p>
           <p><strong>Campeonato:</strong> {{ noticia.campeonato }}</p>
-          <button (click)="editNoticia(noticia)">Editar</button>
-          <button (click)="deleteNoticia(noticia.id)">Excluir</button>
+          <ng-container *ngIf="currentUser?.userType === 'jornalista'">
+            <button (click)="editNoticia(noticia)">Editar</button>
+            <button (click)="deleteNoticia(noticia.id)">Excluir</button>
         </ng-container>
+      </ng-container>
       </div>
     </div>
   </mat-sidenav-content>

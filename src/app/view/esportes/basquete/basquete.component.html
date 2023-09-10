@@ -39,6 +39,7 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
+
     <div>
       <label>
         Status da partida:
@@ -46,11 +47,6 @@
           <option value="">Todos</option>
           <option *ngFor="let status of statuses" [value]="status">{{status}}</option>
         </select>
-      </label>
-      
-      <label>
-        Nome do Campeonato:
-        <input type="text" [(ngModel)]="filterChampionship" (input)="filterPartidas()" />
       </label>
       
       <label>
@@ -65,24 +61,35 @@
         <h3>{{ championship }}</h3>
         <ul>
           <li *ngFor="let partida of filteredPartidas[status][championship]">
-            {{ partida.teamA }} vs {{ partida.teamB }} - {{ partida.date }}
+            <ng-container *ngIf="status === 'Evento Futuro'">
+              {{ partida.teamA }} vs {{ partida.teamB }} <br>{{ partida.date }} <br> {{ partida.time }}
+            </ng-container>
+            <ng-container *ngIf="status === 'Ao-Vivo'">
+              {{ partida.teamA }} {{ partida.scoreA }} vs {{ partida.scoreB }} {{ partida.teamB }}
+            </ng-container>
+            <ng-container *ngIf="status === 'Finalizado'">
+              {{ partida.teamA }} {{ partida.scoreA }} vs {{ partida.scoreB }} {{ partida.teamB }} <br> {{ partida.date }} <br> {{ partida.time }}
+            </ng-container>
+            <br>
             <button (click)="onPartidaClick(partida)">Ver Detalhes</button>
           </li>
         </ul>
       </div>
     </div>
     
+    
     <div *ngIf="selectedPartida">
       <h3>Detalhes da Partida</h3>
       <p>{{ selectedPartida.teamA }} vs {{ selectedPartida.teamB }}</p>
       <p>Data: {{ selectedPartida.date }}</p>
+      <p>Horário: {{ selectedPartida.time }}</p>
       <p>Campeonato: {{ selectedPartida.championshipName }}</p>
       <p>Fase: {{ selectedPartida.phase }}</p>
+      <p>Estádio: {{ selectedPartida.stadium }}</p>
       <p>Localização: {{ selectedPartida.location }}</p>
     </div>
-  
-    <button [routerLink]="['/basquete-prognosticos']">Prognósticos</button>
-  <button [routerLink]="['/basquete-noticias']">Notícias</button>
     
+    <button [routerLink]="['/basquete-prognosticos']">Prognósticos</button>
+    <button [routerLink]="['/basquete-noticias']">Notícias</button>
   </mat-sidenav-content>
 </mat-sidenav-container>
