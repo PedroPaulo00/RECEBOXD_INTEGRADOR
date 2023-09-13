@@ -7,6 +7,7 @@ import { FirestoreDataService } from 'src/app/services/firestore-data.service';
   templateUrl: './admin-crud-partidas.component.html',
   styleUrls: ['./admin-crud-partidas.component.scss']
 })
+
 export class AdminCrudPartidasComponent implements OnInit {
   sports: string[] = ['Baseball', 'Basquete', 'Tenis', 'Futebol'];
   phases: string[] = ['Fase Regular', 'Playoffs'];
@@ -23,7 +24,6 @@ export class AdminCrudPartidasComponent implements OnInit {
     phase: null,
   };
   
-
   constructor(private firestoreDataService: FirestoreDataService) { }
 
   ngOnInit(): void {
@@ -37,11 +37,10 @@ export class AdminCrudPartidasComponent implements OnInit {
   fetchMatches(): void {
     this.firestoreDataService.getMatches().subscribe(data => {
       this.matches = data;
-      console.log(data);  // Adicione esta linha para verificar os dados
+      console.log(data);
     });
   }
   
-
   onCreateMatch(form: NgForm): void {
     this.firestoreDataService.createMatch(form.value).then(() => {
       this.fetchMatches();
@@ -76,5 +75,4 @@ export class AdminCrudPartidasComponent implements OnInit {
       console.error('Error deleting match: ', error);
     });
   }
-  
 }

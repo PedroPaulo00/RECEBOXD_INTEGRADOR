@@ -9,6 +9,7 @@ import { Match } from 'src/app/model/match.model';
   templateUrl: './tenis.component.html',
   styleUrls: ['./tenis.component.scss']
 })
+
 export class TenisComponentComponent implements OnInit {
   partidas: Match[] = [];
   filteredPartidas: { [key: string]: { [key: string]: Match[] } } = {};

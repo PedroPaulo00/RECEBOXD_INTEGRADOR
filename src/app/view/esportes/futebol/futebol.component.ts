@@ -9,6 +9,7 @@ import { Match } from 'src/app/model/match.model';
   templateUrl: './futebol.component.html',
   styleUrls: ['./futebol.component.scss']
 })
+
 export class FutebolComponent implements OnInit {
   partidas: Match[] = [];
   filteredPartidas: { [key: string]: { [key: string]: Match[] } } = {};

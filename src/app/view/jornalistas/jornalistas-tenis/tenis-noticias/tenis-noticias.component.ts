@@ -11,6 +11,7 @@ import { Router } from "@angular/router";
   templateUrl: './tenis-noticias.component.html',
   styleUrls: ['./tenis-noticias.component.scss']
 })
+
 export class TenisNoticiasComponent implements OnInit {
   currentUser: any = null;
   noticias: any[] = [];
@@ -74,7 +75,7 @@ export class TenisNoticiasComponent implements OnInit {
             .then(() => {
               console.log('Notícia editada com sucesso!');
               this.editingNoticia = null;
-              this.noticiaFormModel = {}; // Reset the form model
+              this.noticiaFormModel = {}; 
               form.reset();
             })
             .catch(error => {
@@ -84,7 +85,7 @@ export class TenisNoticiasComponent implements OnInit {
           this.firestore.collection('noticias').add(noticiaData)
             .then(() => {
               console.log('Notícia postada com sucesso!');
-              this.noticiaFormModel = {}; // Reset the form model
+              this.noticiaFormModel = {}; 
               form.reset();
             })
             .catch(error => {
@@ -97,7 +98,7 @@ export class TenisNoticiasComponent implements OnInit {
 
   editNoticia(noticia: any): void {
     this.editingNoticia = noticia;
-    this.noticiaFormModel = { ...noticia, data: new Date(noticia.data) }; // Convertendo a data em objeto Date
+    this.noticiaFormModel = { ...noticia, data: new Date(noticia.data) };
     this.showModal = true;
   }  
 

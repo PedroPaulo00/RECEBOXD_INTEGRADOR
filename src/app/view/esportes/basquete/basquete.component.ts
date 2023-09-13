@@ -9,6 +9,7 @@ import { Match } from 'src/app/model/match.model';
   templateUrl: './basquete.component.html',
   styleUrls: ['./basquete.component.scss']
 })
+
 export class BasqueteComponent implements OnInit {
   partidas: Match[] = [];
   filteredPartidas: { [key: string]: { [key: string]: Match[] } } = {};

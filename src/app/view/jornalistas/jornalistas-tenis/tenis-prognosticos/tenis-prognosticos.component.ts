@@ -5,12 +5,12 @@ import { NgForm } from "@angular/forms";
 import { of, switchMap } from "rxjs";
 import { Router } from "@angular/router";
 
-// prognostico.component.ts
 @Component({
   selector: 'app-tenis-prognosticos',
   templateUrl: './tenis-prognosticos.component.html',
   styleUrls: ['./tenis-prognosticos.component.scss']
 })
+
 export class TenisPrognosticosComponent implements OnInit {
   currentUser: any = null;
   prognosticos: any[] = [];
@@ -53,7 +53,7 @@ export class TenisPrognosticosComponent implements OnInit {
             .then(() => {
               console.log('Prognóstico editada com sucesso!');
               this.editingPrognostico = null;
-              this.prognosticoFormModel = {}; // Reset the form model
+              this.prognosticoFormModel = {}; 
               form.reset();
             })
             .catch(error => {
@@ -63,7 +63,7 @@ export class TenisPrognosticosComponent implements OnInit {
           this.firestore.collection('prognosticos').add(prognosticoData)
             .then(() => {
               console.log('Prognóstico postada com sucesso!');
-              this.prognosticoFormModel = {}; // Reset the form model
+              this.prognosticoFormModel = {}; 
               form.reset();
             })
             .catch(error => {

@@ -7,6 +7,7 @@ import { Observable, from, map, of, switchMap, throwError } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
   currentUser: any;
 
@@ -28,7 +29,8 @@ export class AuthService {
             favoriteTeam: authData.favoriteTeam,
             userType: authData.userType
           });
-        } else {
+        } 
+        else {
           throw new Error('Usuário não foi criado');
         }
       })
@@ -41,20 +43,17 @@ export class AuthService {
   login(email: string, password: string): Promise<void> {
     return this.afAuth.signInWithEmailAndPassword(email, password)
       .then(userCredential => {
-        console.log('Login successful!', userCredential);
+        console.log('Login bem suscedido!', userCredential);
       })
       .catch(error => {
-        console.error('Login failed', error);
+        console.error('Login falhou', error);
         throw error;
       });
   }
 
-  // Em seu serviço AuthService
-
-logout(): Promise<void> {
+  logout(): Promise<void> {
   return this.afAuth.signOut();
-}
-
+  }
 
   getUserData(): Observable<any> {
     return this.afAuth.authState.pipe(
@@ -66,13 +65,13 @@ logout(): Promise<void> {
             }
         })
     );
-}
+  }
 
   updateUserProfile(data: any) {
     if(this.currentUser) {
       return this.firestore.collection('users').doc(this.currentUser.uid).update(data);
     } else {
-      return throwError('User not logged in');
+      return throwError('Usuario nao logado');
     }
   }
 
@@ -84,7 +83,7 @@ logout(): Promise<void> {
         })
       );
     } else {
-      return throwError('User not logged in');
+      return throwError('Usuario nao logado');
     }
   }
 
@@ -107,5 +106,4 @@ logout(): Promise<void> {
       }))
     );
   }  
-  
 }

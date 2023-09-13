@@ -11,6 +11,7 @@ import { Router } from "@angular/router";
   templateUrl: './futebol-prognosticos.component.html',
   styleUrls: ['./futebol-prognosticos.component.scss']
 })
+
 export class FutebolPrognosticosComponent implements OnInit {
   currentUser: any = null;
   prognosticos: any[] = [];
@@ -53,7 +54,7 @@ export class FutebolPrognosticosComponent implements OnInit {
             .then(() => {
               console.log('Prognóstico editada com sucesso!');
               this.editingPrognostico = null;
-              this.prognosticoFormModel = {}; // Reset the form model
+              this.prognosticoFormModel = {};
               form.reset();
             })
             .catch(error => {
@@ -63,7 +64,7 @@ export class FutebolPrognosticosComponent implements OnInit {
           this.firestore.collection('prognosticos').add(prognosticoData)
             .then(() => {
               console.log('Prognóstico postada com sucesso!');
-              this.prognosticoFormModel = {}; // Reset the form model
+              this.prognosticoFormModel = {};
               form.reset();
             })
             .catch(error => {

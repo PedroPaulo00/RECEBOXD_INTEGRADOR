@@ -7,5 +7,4 @@ export interface AuthData {
     birthDate: Date;
     favoriteTeam: string;
     userType: 'usuario' | 'jornalista';
-  }
-  
+}

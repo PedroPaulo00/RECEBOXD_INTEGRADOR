@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './tela-inicial.component.html',
   styleUrls: ['./tela-inicial.component.scss']
 })
+
 export class TelaInicialComponent {
   sports = [
     { name: 'Futebol', image: 'assets/images/futebol-image.jpg', route: '/futebol' },
@@ -46,5 +47,4 @@ export class TelaInicialComponent {
   navigateToTelaInicial(): void {
     this.router.navigate(['/tela-inicial']);
   }
-  
 }

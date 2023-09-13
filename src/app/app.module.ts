@@ -37,8 +37,6 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { AuthGuard } from './services/auth.guard';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,

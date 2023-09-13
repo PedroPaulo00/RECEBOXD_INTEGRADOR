@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
+
 export class LoginComponent implements OnInit {
 
   errorMessage: string | null = null;
@@ -23,9 +24,8 @@ export class LoginComponent implements OnInit {
       const { email, password } = form.value;
       this.authService.login(email, password)
         .then(() => {
-          this.errorMessage = '';  // Agora, atribuímos uma string vazia em vez de null
-          this.router.navigate(['/tela-inicial']); // 3. Redirecione para "tela-inicial"
-          // Aqui, você pode redirecionar o usuário para outra página ou fazer outras ações necessárias
+          this.errorMessage = ''; 
+          this.router.navigate(['/tela-inicial']); 
         })
         .catch(error => {
           this.errorMessage = "O login falhou, verifique e-mail e senha e tente novamente!";

@@ -13,5 +13,4 @@ export interface Match {
     time: string;
     date: string;
     status: string;
-  }
-  
+}

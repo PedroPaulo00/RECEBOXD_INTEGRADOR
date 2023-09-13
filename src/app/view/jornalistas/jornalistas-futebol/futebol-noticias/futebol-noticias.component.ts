@@ -10,6 +10,7 @@ import { Router } from "@angular/router";
   templateUrl: './futebol-noticias.component.html',
   styleUrls: ['./futebol-noticias.component.scss']
 })
+
 export class FutebolNoticiasComponent implements OnInit {
   currentUser: any = null;
   noticias: any[] = [];
@@ -73,7 +74,7 @@ export class FutebolNoticiasComponent implements OnInit {
             .then(() => {
               console.log('Notícia editada com sucesso!');
               this.editingNoticia = null;
-              this.noticiaFormModel = {}; // Reset the form model
+              this.noticiaFormModel = {}; 
               form.reset();
             })
             .catch(error => {
@@ -83,7 +84,7 @@ export class FutebolNoticiasComponent implements OnInit {
           this.firestore.collection('noticias').add(noticiaData)
             .then(() => {
               console.log('Notícia postada com sucesso!');
-              this.noticiaFormModel = {}; // Reset the form model
+              this.noticiaFormModel = {}; 
               form.reset();
             })
             .catch(error => {
@@ -96,7 +97,7 @@ export class FutebolNoticiasComponent implements OnInit {
 
   editNoticia(noticia: any): void {
     this.editingNoticia = noticia;
-    this.noticiaFormModel = { ...noticia, data: new Date(noticia.data) }; // Convertendo a data em objeto Date
+    this.noticiaFormModel = { ...noticia, data: new Date(noticia.data) }; 
     this.showModal = true;
   }  
 

@@ -9,6 +9,7 @@ import { FirestoreDataService } from 'src/app/services/firestore-data.service';
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.scss']
 })
+
 export class PerfilComponent {
   userData: any = {};
   errorMessage: string | null = null;
@@ -36,15 +37,13 @@ export class PerfilComponent {
   
   onEdit(): void {
     if (this.userData) {
-      // AQUI: Implemente a lógica para editar o perfil, assumindo que você tem um método em AuthService para atualizar os dados do usuário
       from(this.authService.updateUserProfile(this.userData)).subscribe(
         response => {
-          console.log('Profile updated successfully!', response);
+          console.log('Perfil atualizado!', response);
           this.router.navigate(['/tela-inicial']); 
         },
         error => {
-          console.error('Failed to update profile', error);
-          // ...
+          console.error('Falha ao atualizar perfil', error);
         }
       );
     } else {
@@ -53,11 +52,9 @@ export class PerfilComponent {
   }
   
   onDelete(): void {
-    // AQUI: Implemente a lógica para excluir o perfil, assumindo que você tem um método em AuthService para excluir o usuário
     this.authService.deleteUser().subscribe(
       () => {
         this.errorMessage = null;
-        // Redireciona para a tela inicial ou uma página de despedida
         this.router.navigate(['/tela-inicial']);
       },
       error => {

@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
+
 export class RegisterComponent implements OnInit {
   errorMessage: string | null = null;
   successMessage: string | null = null;

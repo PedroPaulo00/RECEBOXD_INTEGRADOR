@@ -81,7 +81,6 @@
         <option value="Playoffs">Playoffs</option>
       </select>
   
-      <!-- Caso a fase seja playoffs, exiba o seletor de fases dos playoffs -->
       <div *ngIf="showPlayoffPhases">
         <select name="playoffPhase" [(ngModel)]="matchToEdit.playoffPhase">
           <option value="Oitavas-de-Final">Oitavas-de-Final</option>
