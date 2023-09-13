@@ -37,7 +37,7 @@ input, textarea, select, button, input[type="button"], input[type="submit"] {
 
 input, textarea, select {
     background-color: #98FB98;  /* Verde claro para campos de preenchimento */
-    color: #006400;  /* Verde bem escuro para o texto dentro dos campos de preenchimento */
+    color: #000000;  /* Verde bem escuro para o texto dentro dos campos de preenchimento */
     border: 1px solid #006400; 
     padding: 8px;
     margin: 4px 0;  
@@ -54,9 +54,9 @@ input:focus, textarea:focus, select:focus {
 }
 
 button, input[type="button"], input[type="submit"] {
-    background-color: #32CD32;  /* Verde médio para os botões */
-    color: #F0FFF0;  /* Verde muito claro para o texto nos botões */
     border: 1px solid #006400; 
+    background-color: black; 
+    color: rgb(164, 248, 7);
     padding: 8px 12px;  
     margin: 4px 0;  
     border-radius: 4px;  
@@ -164,7 +164,7 @@ button:focus, button:active, input[type="button"]:focus, input[type="submit"]:fo
     background-color: #91f091;
     padding: 10px;
     border-bottom: 1px solid #e0e0e0;
-    color: #F0FFF0;
+    color: #000000;
   }
 
    .receboxd-logo {
@@ -216,17 +216,29 @@ form {
 }
 
 .partida-card {
-    background-color: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
-    max-width: 300px;
-    margin: 0 auto;
-  }
+  background-size: cover; /* Faz com que a imagem cubra todo o background */
+  background-position: center; /* Centraliza a imagem */
+  background-repeat: no-repeat; /* Evita repetições da imagem */
+  color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  max-width: 300px;
+  margin: 0 auto;
+  position: relative; /* Mantenha isso para permitir o posicionamento relativo dos elementos dentro do card */
+}
+.partida-card div {
+  background-color: rgba(0, 0, 0, 0.5); /* Adiciona um fundo semi-transparente para melhor legibilidade */
+}
+
+.partida-card div.active {
+  display: block; /* Isso fará com que o div ativo seja exibido */
+}
 
   .teamA, .teamB {
     font-weight: bold;
+    
   }
   .scoreA, .scoreB {
     color: red;
@@ -248,44 +260,99 @@ form {
     text-align: center;
   }
 
+  .noticia-card {
+    display: flex;
+    align-items: flex-start;
+    background-color: #ceffae;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .noticia-image {
+    flex: 1;
+    max-width: 300px;
+    width: 100%; /* Isso garantirá que a imagem seja responsiva */
+    border-radius: 5px;
+    margin-right: 10px; /* Espaçamento entre a imagem e o conteúdo */
+  }
+  
+  .noticia-content {
+    flex: 2;
+  }
+
+  .prognostico-card {
+    display: flex;
+    align-items: flex-start;
+    background-color: #ceffae;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .prognostico-image {
+    flex: 1;
+    max-width: 300px;
+    width: 100%; /* Isso garantirá que a imagem seja responsiva */
+    border-radius: 5px;
+    margin-right: 10px; /* Espaçamento entre a imagem e o conteúdo */
+  }
+  
+  .prognostico-content {
+    flex: 2;
+  }
+  
   .top-news-carousel {
     top: 50px; /* Ajuste este valor de acordo com a altura da sua top-bar */
     left: 0;
     right: 0;
     z-index: 1000;
-    background-color: #f8f9fa;
+    background-color: #86c074;
+    background-size: cover; /* Isso fará com que a imagem se ajuste completamente dentro do container */
+    background-repeat: no-repeat; /* Isso evitará que a imagem seja repetida */
+    background-position: center;
     overflow: hidden;
-  }
+    height: 500px; /* Defina a altura de acordo com o que você precisa, 500px é apenas um valor de exemplo */
+}
   
-  .top-news-carousel div {
-    display: none;
-  }
-  
-  .top-news-carousel div.active {
-    display: block;
-    }
+.top-news-carousel div {
+  display: none;
+  position: absolute; /* Isto fará com que o div seja posicionado em relação ao .top-news-carousel */
+  bottom: 150px; /* Isto coloca o div no canto inferior */
+  left: 10px; /* Isto coloca o div no canto esquerdo */
+  background-color: rgba(0, 0, 0, 0.5); /* Adiciona um fundo semi-transparente para melhor legibilidade */
+  padding: 10px; /* Adiciona algum espaço ao redor do texto */
+  max-width: 300px; /* Limita a largura do contêiner de notícias */
+  box-sizing: border-box; /* Isso garante que o padding não aumenta o tamanho do contêiner */
+}
 
-    .carousel-buttons {
-      position: absolute;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 5px;
-    }
-    
-    .carousel-button {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background-color: #ccc;
-      border: none;
-      cursor: pointer;
-    }
-    
-    .carousel-button.active {
-      background-color: #000;
-    }
+.top-news-carousel div.active {
+  display: block;
+}
+
+.carousel-buttons {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 5px;
+}
+
+.carousel-button {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ccc;
+  border: none;
+  cursor: pointer;
+}
+
+.carousel-button.active {
+  background-color: #000;
+}
     
     
 

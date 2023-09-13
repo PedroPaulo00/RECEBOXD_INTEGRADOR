@@ -1,3 +1,5 @@
+
+
 <div class="top-bar">
   <button mat-button (click)="sidenav.toggle()">Menu</button>
   <div class="receboxd-logo" (click)="navigateToTelaInicial()">RECEBOXD</div>
@@ -70,8 +72,8 @@
           <ng-container *ngFor="let championship of getChampionshipKeys('Finalizado')">
             <h3 style="text-align: center;">{{ championship }}</h3>
             <div *ngFor="let partida of filteredPartidas['Finalizado'][championship]" class="partida-card">
-              {{ partida.teamA }} {{ partida.scoreA }} vs {{ partida.scoreB }} {{ partida.teamB }} <br> {{ partida.date }} <br> {{ partida.time }}
-              <br><button (click)="onPartidaClick(partida)">Ver Detalhes</button>
+              <strong>{{ partida.teamA }} {{ partida.scoreA }} vs {{ partida.scoreB }} {{ partida.teamB }} <br> {{ partida.date }} <br> {{ partida.time }}</strong>
+              <br><button style="background-color: black; color: rgb(164, 248, 7);" (click)="onPartidaClick(partida)">Ver Detalhes</button>
 
               <div *ngIf="selectedPartida === partida">
                 <h3>Detalhes da Partida</h3>
@@ -95,8 +97,8 @@
           <ng-container *ngFor="let championship of getChampionshipKeys('Ao-Vivo')">
             <h3 style="text-align: center;">{{ championship }}</h3>
             <div *ngFor="let partida of filteredPartidas['Ao-Vivo'][championship]" class="partida-card">
-              {{ partida.teamA }} {{ partida.scoreA }} vs {{ partida.scoreB }} {{ partida.teamB }}
-              <br><button (click)="onPartidaClick(partida)">Ver Detalhes</button>
+            <strong>{{ partida.teamA }} {{ partida.scoreA }} vs {{ partida.scoreB }} {{ partida.teamB }}</strong>
+              <br><button style="background-color: black; color: rgb(164, 248, 7);" (click)="onPartidaClick(partida)">Ver Detalhes</button>
 
               <div *ngIf="selectedPartida === partida">
                 <h3>Detalhes da Partida</h3>
@@ -120,8 +122,8 @@
           <ng-container *ngFor="let championship of getChampionshipKeys('Evento Futuro')">
             <h3 style="text-align: center;">{{ championship }}</h3>
             <div *ngFor="let partida of filteredPartidas['Evento Futuro'][championship]" class="partida-card">
-              {{ partida.teamA }} vs {{ partida.teamB }} <br>{{ partida.date }} <br> {{ partida.time }}
-              <br><button (click)="onPartidaClick(partida)">Ver Detalhes</button>
+            <strong>{{ partida.teamA }} vs {{ partida.teamB }} <br>{{ partida.date }} <br> {{ partida.time }}</strong>
+              <br><button style="background-color: black; color: rgb(164, 248, 7);" (click)="onPartidaClick(partida)">Ver Detalhes</button>
 
               <div *ngIf="selectedPartida === partida">
                 <h3>Detalhes da Partida</h3>

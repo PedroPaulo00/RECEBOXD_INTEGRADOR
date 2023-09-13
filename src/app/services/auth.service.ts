@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { AuthData } from './model/auth-data.model';
+import { AuthData } from '../model/auth-data.model';
 import { Observable, from, map, of, switchMap, throwError } from 'rxjs';
 
 @Injectable({

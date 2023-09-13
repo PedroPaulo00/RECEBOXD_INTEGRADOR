@@ -19,6 +19,7 @@ import { TenisNoticiasComponent } from './view/jornalistas/jornalistas-tenis/ten
 import { TenisPrognosticosComponent } from './view/jornalistas/jornalistas-tenis/tenis-prognosticos/tenis-prognosticos.component';
 import { BasqueteNoticiasComponent } from './view/jornalistas/jornalistas-basquete/basquete-noticias/basquete-noticias.component';
 import { BasquetePrognosticosComponent } from './view/jornalistas/jornalistas-basquete/basquete-prognosticos/basquete-prognosticos.component';
+import { AuthGuard } from './services/auth.guard';
 
 
 const routes: Routes = [
@@ -27,20 +28,20 @@ const routes: Routes = [
   { path: 'cadastro', component: RegisterComponent},
   { path: '', component : LoginComponent},
   { path: 'register', component : RegisterComponent},
-  { path: 'tela-inicial', component : TelaInicialComponent},
-  { path: 'perfil', component : PerfilComponent},
-  { path: 'futebol', component: FutebolComponent },
-  { path: 'tenis', component: TenisComponentComponent},
-  { path: 'baseball', component: BaseballComponent },
-  { path: 'basquete', component: BasqueteComponent },
-  { path: 'baseball-noticias', component: BaseballNoticiasComponent },
-  { path: 'baseball-prognosticos', component: BaseballPrognosticosComponent },
-  { path: 'futebol-noticias', component: FutebolNoticiasComponent },
-  { path: 'futebol-prognosticos', component: FutebolPrognosticosComponent },
-  { path: 'tenis-noticias', component: TenisNoticiasComponent },
-  { path: 'tenis-prognosticos', component: TenisPrognosticosComponent },
-  { path: 'basquete-noticias', component: BasqueteNoticiasComponent },
-  { path: 'basquete-prognosticos', component: BasquetePrognosticosComponent },
+  { path: 'tela-inicial', component : TelaInicialComponent, canActivate: [AuthGuard]},
+  { path: 'perfil', component : PerfilComponent, canActivate: [AuthGuard]},
+  { path: 'futebol', component: FutebolComponent, canActivate: [AuthGuard] },
+  { path: 'tenis', component: TenisComponentComponent, canActivate: [AuthGuard]},
+  { path: 'baseball', component: BaseballComponent, canActivate: [AuthGuard] },
+  { path: 'basquete', component: BasqueteComponent, canActivate: [AuthGuard] },
+  { path: 'baseball-noticias', component: BaseballNoticiasComponent, canActivate: [AuthGuard] },
+  { path: 'baseball-prognosticos', component: BaseballPrognosticosComponent, canActivate: [AuthGuard] },
+  { path: 'futebol-noticias', component: FutebolNoticiasComponent, canActivate: [AuthGuard] },
+  { path: 'futebol-prognosticos', component: FutebolPrognosticosComponent, canActivate: [AuthGuard] },
+  { path: 'tenis-noticias', component: TenisNoticiasComponent, canActivate: [AuthGuard] },
+  { path: 'tenis-prognosticos', component: TenisPrognosticosComponent, canActivate: [AuthGuard] },
+  { path: 'basquete-noticias', component: BasqueteNoticiasComponent, canActivate: [AuthGuard] },
+  { path: 'basquete-prognosticos', component: BasquetePrognosticosComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent}
 ]
 

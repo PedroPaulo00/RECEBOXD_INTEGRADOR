@@ -37,9 +37,18 @@
       </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
+  
 
   <mat-sidenav-content>
-    <div *ngIf="currentUser?.userType === 'jornalista'">
+    <button mat-icon-button class="popup-button" *ngIf="currentUser?.userType === 'jornalista'" (click)="openModal()">
+      + Adicionar Prognóstico
+    </button>
+    <div class="modal" *ngIf="showModal">
+      <div class="modal-content">
+          <div class="close-container">
+              <span class="close" (click)="closeModal()">&times;</span>
+          </div>
+          <div *ngIf="currentUser?.userType === 'jornalista'">
       <form (ngSubmit)="postPrognostico(prognosticoForm)" #prognosticoForm="ngForm">
         <div>
           <label for="titulo">Título</label>
@@ -66,8 +75,12 @@
           </select>
         </div>
         
-        <button type="submit" [disabled]="!prognosticoForm.form.valid">Postar Prognóstico</button>
+        <button type="submit" [disabled]="!prognosticoForm.form.valid">
+          {{ prognosticoFormModel.id ? 'Atualizar Prognóstico' : 'Postar Prognóstico' }}
+        </button>
       </form>
+    </div>
+  </div>
     </div>
     
     
@@ -75,16 +88,20 @@
     <div *ngIf="currentUser?.userType === 'usuario' || currentUser?.userType === 'jornalista'">
       <div *ngFor="let prognostico of prognosticos">
         <ng-container *ngIf="prognostico.esporte === 'Basquete'">
-          <h2>{{ prognostico.titulo }}</h2>
-          <p>{{ prognostico.conteudo }}</p>
-          <p><strong>Campeonato:</strong> {{ prognostico.campeonato }}</p>
-          <ng-container *ngIf="currentUser?.userType === 'jornalista'">
-          <button (click)="editPrognostico(prognostico)">Editar</button>
-            <button (click)="deletePrognostico(prognostico.id)">Excluir</button>
+          <div class="prognostico-card">
+            <img src="assets/images/ohtani-mvp.jpg" alt="Imagem da Prognóstico" class="prognostico-image"/>
+            <div class="prognostico-content">
+              <h2>{{ prognostico.titulo }}</h2>
+              <p>{{ prognostico.conteudo }}</p>
+              <p><strong>Campeonato:</strong> {{ prognostico.campeonato }}</p>
+            </div>
+            <ng-container *ngIf="currentUser?.userType === 'jornalista'">
+              <button style="background-color: black; color: rgb(164, 248, 7); margin-right: 10px"(click)="editPrognostico(prognostico)">Editar</button>
+              <button style="background-color: black; color: rgb(164, 248, 7);"(click)="deletePrognostico(prognostico.id)">Excluir</button>
+            </ng-container>
+          </div>
         </ng-container>
-      </ng-container>
       </div>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
-

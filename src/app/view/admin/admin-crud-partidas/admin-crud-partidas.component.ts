@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { FirestoreDataService } from 'src/app/firestore-data.service';
+import { FirestoreDataService } from 'src/app/services/firestore-data.service';
 
 @Component({
   selector: 'app-admin-crud-partidas',

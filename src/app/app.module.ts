@@ -35,6 +35,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { AuthGuard } from './services/auth.guard';
 
 
 
@@ -79,7 +80,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatDividerModule,
     MatGridListModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

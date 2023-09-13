@@ -59,7 +59,7 @@
       <li *ngFor="let match of matches | matchFilter:filterSport:filterStatus">
         {{ match.teamA }} vs {{ match.teamB }} - {{ match.date }}
         <button (click)="onEditMatch(match)">Editar Partida</button>
-        <button (click)="onDeleteMatch(match)">Excluir Partida</button>
+        <button style="color: red"(click)="onDeleteMatch(match)">Excluir Partida</button>
       </li>
     </ul>
   </div>

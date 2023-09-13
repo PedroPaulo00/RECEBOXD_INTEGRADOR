@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { from } from 'rxjs';
-import { AuthService } from 'src/app/auth.service';
-import { FirestoreDataService } from 'src/app/firestore-data.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { FirestoreDataService } from 'src/app/services/firestore-data.service';
 
 @Component({
   selector: 'app-perfil',

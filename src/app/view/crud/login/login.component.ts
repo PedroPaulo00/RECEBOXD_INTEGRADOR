@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
           // Aqui, você pode redirecionar o usuário para outra página ou fazer outras ações necessárias
         })
         .catch(error => {
-          this.errorMessage = "O login falhou";
+          this.errorMessage = "O login falhou, verifique e-mail e senha e tente novamente!";
           console.error('Login failed', error);
         });
     } else {

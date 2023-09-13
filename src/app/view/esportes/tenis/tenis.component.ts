@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/auth.service';
-import { FirestoreDataService } from 'src/app/firestore-data.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { FirestoreDataService } from 'src/app/services/firestore-data.service';
 import { Match } from 'src/app/model/match.model';
 
 @Component({

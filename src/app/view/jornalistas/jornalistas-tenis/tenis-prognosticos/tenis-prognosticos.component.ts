@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { AuthService } from "../../../../auth.service";
+import { AuthService } from "../../../../services/auth.service";
 import { AngularFirestore } from "@angular/fire/compat/firestore";
 import { NgForm } from "@angular/forms";
 import { of, switchMap } from "rxjs";
@@ -17,6 +17,7 @@ export class TenisPrognosticosComponent implements OnInit {
   editingPrognostico: any = null;
   prognosticoFormModel: any = {};
   userNickname: string | null = null;
+  showModal = false;
 
   constructor(private firestore: AngularFirestore, private authService : AuthService, private router : Router) { }
 
@@ -50,7 +51,7 @@ export class TenisPrognosticosComponent implements OnInit {
         if (this.editingPrognostico) {
           this.firestore.collection('prognosticos').doc(this.editingPrognostico.id).update(prognosticoData)
             .then(() => {
-              console.log('Prognóstico editado com sucesso!');
+              console.log('Prognóstico editada com sucesso!');
               this.editingPrognostico = null;
               this.prognosticoFormModel = {}; // Reset the form model
               form.reset();
@@ -76,6 +77,7 @@ export class TenisPrognosticosComponent implements OnInit {
   editPrognostico(prognostico: any): void {
     this.editingPrognostico = prognostico;
     this.prognosticoFormModel = { ...prognostico };
+    this.showModal = true;
   }  
 
   deletePrognostico(prognosticoId: string): void {
@@ -87,6 +89,15 @@ export class TenisPrognosticosComponent implements OnInit {
         console.error('Erro ao excluir prognostico:', error);
       });
   }  
+
+  openModal() {
+    this.showModal = true;
+  }
+  
+  closeModal() {
+    this.prognosticoFormModel = {};
+    this.showModal = false;
+  }
 
   onLogout(): void {
     this.authService.logout().then(() => {

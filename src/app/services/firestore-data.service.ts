@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Match } from './model/match.model';
+import { Match } from '../model/match.model';
 import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'

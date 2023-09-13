@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { AuthService } from "../../../../auth.service";
+import { AuthService } from "../../../../services/auth.service";
 import { NgForm } from "@angular/forms";
 import { AngularFirestore } from "@angular/fire/compat/firestore";
 import { of, switchMap } from "rxjs";
@@ -19,6 +19,7 @@ export class BaseballNoticiasComponent implements OnInit {
   userNickname: string | null = null;
   ultimasNoticias: any[] = [];
   currentNewsIndex = 0;
+  showModal = false;
 
   constructor(private firestore: AngularFirestore, private authService : AuthService, private router : Router) { }
 
@@ -53,6 +54,14 @@ export class BaseballNoticiasComponent implements OnInit {
     this.currentNewsIndex = index;
   }
   
+  openModal() {
+    this.showModal = true;
+  }
+  
+  closeModal() {
+    this.noticiaFormModel = {};
+    this.showModal = false;
+  }
   
   postNoticia(form: NgForm): void {
     if (this.currentUser?.userType === 'jornalista') {
@@ -89,6 +98,7 @@ export class BaseballNoticiasComponent implements OnInit {
   editNoticia(noticia: any): void {
     this.editingNoticia = noticia;
     this.noticiaFormModel = { ...noticia, data: new Date(noticia.data) }; // Convertendo a data em objeto Date
+    this.showModal = true;
   }  
 
   deleteNoticia(noticiaId: string): void {
