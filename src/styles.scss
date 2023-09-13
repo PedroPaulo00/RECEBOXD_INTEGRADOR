@@ -295,9 +295,9 @@ form {
   .prognostico-image {
     flex: 1;
     max-width: 300px;
-    width: 100%; /* Isso garantirá que a imagem seja responsiva */
+    width: 100%; 
     border-radius: 5px;
-    margin-right: 10px; /* Espaçamento entre a imagem e o conteúdo */
+    margin-right: 10px; 
   }
   
   .prognostico-content {
@@ -305,7 +305,7 @@ form {
   }
   
   .top-news-carousel {
-    top: 50px; /* Ajuste este valor de acordo com a altura da sua top-bar */
+    top: 50px; 
     left: 0;
     right: 0;
     z-index: 1000;

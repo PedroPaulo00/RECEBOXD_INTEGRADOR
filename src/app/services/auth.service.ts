@@ -51,6 +51,7 @@ export class AuthService {
       });
   }
 
+
   logout(): Promise<void> {
   return this.afAuth.signOut();
   }
